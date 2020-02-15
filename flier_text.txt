@@ -1,0 +1,33 @@
+Google Cloud @ TreeHacks 2020
+API Prize: Best Use of Google Cloud
+• Use arny Google Cloud product in your
+project (Firebase counts)
+1st Place: Googie Nest Mint Cloud
+Patagonia Beckoock. Cloud Pilow, Acrylic
+Trophy, and Cloud Water Bottle
+2nd Place / 3rd Piace: Google Nest Minis
+What is Google Cloud?
+A suite of developer products thet lets you build using the sarne
+technology and infrastructure that powers Google products
+Where can I get $50 of free credits? Visit the Google table. enjoy
+some swag and a chet - and receive your free credits
+Google Cloud Tech Tolk- Friday night at midnight
+detechio
+Googie Cloud Hackathon Toolkit - goo gle/heckathen-tooit
+What products should I try?
+• Machine Learning APis - gain insaghts from data using Google's
+pre-trained machine learning models.
+o Vision (cioud google.com/ision/docs) For moble apps use
+ML Kit (firebase.google com/docsmut)
+Natural Language
+(cloud.googie.corn/natural- language/doca)
+o Transtate (cloud.google.com/transiate/docs)
+Video (cloud.google.com/video-intelligence/docs)
+o Speech-To-Test (cloud.googie.com/speech-to-text/decs)
+o Text-To-Speech (cloud.google.com/text-to-opeech/docs)
+Firebose (firebase google.com- mobile / web development
+platform featuring the Firebase realtime database
+App Engrie (cloud googie.com/appengine/docs) - deploy web apos
+In Python, Node.js. Ruby, and more
+Cloud Firestore (cloud.google.com/firestore/docs) easy-to-use
+realtime NuSQL databaso
