@@ -1,26 +1,39 @@
-import os
-import io
+import cv2
+import simpleaudio as sa
 
 # Imports the Google Cloud client library
 from google.cloud import vision
 from google.cloud.vision import types
+from google.cloud import texttospeech
 
-# Instantiates a client
-client = vision.ImageAnnotatorClient()
+def text_from_image(image):
+    # Instantiates a client
+    client = vision.ImageAnnotatorClient()
 
-# The name of the image file to annotate
-file_name = os.path.abspath('images/google_flier.jpg')
+    image = types.Image(content=cv2.imencode('.jpg', image)[1].tostring())
 
-# Loads the image into memory
-with io.open(file_name, 'rb') as image_file:
-    content = image_file.read()
+    response = client.text_detection(image=image)
+    full_text = response.full_text_annotation.text
+    return full_text
 
-image = types.Image(content=content)
 
-# Performs label detection on the image file
-response = client.label_detection(image=image)
-labels = response.label_annotations
+def read_text(text):
+    client = texttospeech.TextToSpeechClient()
+    synthesis_input = texttospeech.types.SynthesisInput(text=text)
 
-print('Labels:')
-for label in labels:
-    print(label.description)
+    # Build the voice request, select the language code ("en-US") and the ssml
+    # voice gender ("neutral")
+    voice = texttospeech.types.VoiceSelectionParams(
+        language_code='en-US',
+        ssml_gender=texttospeech.enums.SsmlVoiceGender.NEUTRAL)
+
+    # Select the type of audio file you want returned
+    audio_config = texttospeech.types.AudioConfig(
+        audio_encoding=texttospeech.enums.AudioEncoding.LINEAR16)
+
+    # Perform the text-to-speech request on the text input with the selected
+    # voice parameters and audio file type
+    response = client.synthesize_speech(synthesis_input, voice, audio_config)
+    audio = response.audio_content
+    play_obj = sa.play_buffer(audio, 1, 2, 22050)
+
