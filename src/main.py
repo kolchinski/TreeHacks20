@@ -1,29 +1,40 @@
 import cv2
 from api_calls import text_from_image, read_text
+from google.cloud import vision
+from google.cloud.vision import types
+from google.cloud import texttospeech
 
-cap = cv2.VideoCapture(0)
+import time
 
-for i in range(10):
-    print(i)
+from matplotlib import pyplot as plt
 
-    ret, frame = cap.read()
-    if not ret:
-        print("Frame not read")
+from PIL import Image
+
+from Levenshtein import distance as levenshtein_distance
+
+import numpy as np
+
+from collections import defaultdict
+
+import string
+
+import simpleaudio as sa
+
+from pydub import AudioSegment
+from pydub.playback import play
+import io
+
+
+with open('../wp_1gram.txt') as f:
+    lines = f.readlines()
+processed_lines = [l.strip().split('\t') for l in lines]
+
+word_counts = defaultdict(int)
+for entry in processed_lines:
+    #print(entry)
+    try:
+        count, word = entry
+    except:
+        print(entry)
         continue
-
-    frame_text = text_from_image(frame)
-    print(frame_text)
-
-
-    read_text(frame_text)
-
-
-    cv2.imshow('frame', frame)
-
-    key=cv2.waitKey(100)
-    if key == 27: break
-
-
-
-
-
+    word_counts[word.lower()] += int(count)
